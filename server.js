@@ -5,6 +5,7 @@ const routes = require('./controllers');
 const sequelize = require('./config/connections');
 const path = require('path');
 require('dotenv').config();
+const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -29,7 +30,7 @@ app.use(session(sess));
 
 // SET UP HANDLEBARS TEMPLATE ENGINE
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const hbs = exphbs.create({helpers});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
